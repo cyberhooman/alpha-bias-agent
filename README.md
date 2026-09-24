@@ -53,7 +53,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 # Mock happy path (default)
-MOCK_SECTORS=1 python -m uvicorn alpha_bias_agent.app:app --host 0.0.0.0 --port 8000
+MOCK_SECTORS=1 python -m uvicorn alpha_bias_agent.app:app --host 127.0.0.1 --port 8000
 ```
 
 Open **http://127.0.0.1:8000** — demo question is prefilled / one-click.
@@ -62,7 +62,7 @@ Open **http://127.0.0.1:8000** — demo question is prefilled / one-click.
 
 ```bash
 export SECTORS_API_KEY="your_key_here"
-MOCK_SECTORS=0 python -m uvicorn alpha_bias_agent.app:app --host 0.0.0.0 --port 8000
+MOCK_SECTORS=0 python -m uvicorn alpha_bias_agent.app:app --host 127.0.0.1 --port 8000
 ```
 
 ---
@@ -70,7 +70,7 @@ MOCK_SECTORS=0 python -m uvicorn alpha_bias_agent.app:app --host 0.0.0.0 --port 
 ## Exact demo path for judges
 
 1. `cd /workspace/alpha-bias-agent && source .venv/bin/activate`
-2. `MOCK_SECTORS=1 python -m uvicorn alpha_bias_agent.app:app --host 0.0.0.0 --port 8000`
+2. `MOCK_SECTORS=1 python -m uvicorn alpha_bias_agent.app:app --host 127.0.0.1 --port 8000`
 3. Browser → `http://127.0.0.1:8000`
 4. Click suggestion **Bias minggu ini untuk banking?** (or press **Run**)
 5. **Left**: ≤5 ranked banking tickers with one-line why + risks  
@@ -114,3 +114,13 @@ alpha-bias-agent/
 ## Disclaimer
 
 Research bias helper only. Not investment advice. Does not place orders.
+
+
+## Exact run command (verified)
+
+```bash
+cd /workspace/alpha-bias-agent
+MOCK_SECTORS=1 .venv/bin/python -m uvicorn alpha_bias_agent.app:app --host 127.0.0.1 --port 8000
+```
+
+Then open http://127.0.0.1:8000 — GET `/` must be **200** with the chat UI.
